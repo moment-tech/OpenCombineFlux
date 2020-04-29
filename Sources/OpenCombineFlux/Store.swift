@@ -8,15 +8,9 @@
 import Foundation
 import OpenCombine
 
-final public class Store<StoreState: StateType>: OpenCombine.ObservableObject {
+final public class Store<StoreState: StateType> {
     
-    @OpenCombine.Published public var state: StoreState {
-        willSet {
-            objectWillChange.send()
-        }
-    }
-
-    public let objectWillChange = ObservableObjectPublisher()
+    @OpenCombine.Published public var state: StoreState
     
     private var dispatchFunction: DispatchFunction!
     private let reducer: Reducer<StoreState>

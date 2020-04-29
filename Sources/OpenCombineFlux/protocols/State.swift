@@ -9,12 +9,13 @@ import Foundation
 
 public protocol StateType {}
 
-protocol SimpleStateType: StateType {
+public protocol SimpleStateType: StateType {
     static func reducer(state: Self, action: Action) -> Self
     init()
 }
 
-extension SimpleStateType {
+public extension SimpleStateType {
+
     static func newStore(middleware: [Middleware<Self>] = [],
                          initialState: Self = .init()) -> Store<Self> {
         return Store<Self>.init(reducer: reducer, middleware: middleware, state: initialState)
